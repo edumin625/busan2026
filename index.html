@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 부산광역시교육청 주요업무계획 AI 종합 인터랙티브 웹보고서</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .dark-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+    }
+    .gradient-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0369a1 100%);
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+    }
+    .step-active {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+      color: #1e40af;
+      transform: translateY(-2px);
+    }
+    .tab-active {
+      border-bottom: 3px solid #2563eb;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+      .glass-card { box-shadow: none !important; border: 1px solid #ccc !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+  <!-- 상단 네비게이션 헤더 -->
+  <header class="gradient-header text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/30 flex items-center justify-center border border-blue-300/40 text-blue-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-blue-300 font-semibold">2026 Busan Education AI Masterplan</span>
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+              부산광역시교육청 AI 주요업무계획 웹보고서
+              <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-normal hidden sm:inline-block">2026 최종확정</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div class="flex items-center space-x-2">
+          <button onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition border border-white/10">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span class="hidden md:inline">인쇄 / PDF 저장</span>
+          </button>
+          <a href="#search-section" onclick="focusSearch()" class="no-print p-2 rounded-lg bg-blue-600/50 hover:bg-blue-600 text-white transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 서브 네비게이션 탭 -->
+      <nav class="flex space-x-1 sm:space-x-4 overflow-x-auto text-xs sm:text-sm border-t border-blue-400/20 py-2.5 no-scrollbar">
+        <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-3 py-1.5 rounded-md font-semibold text-white bg-white/15 transition shrink-0">📊 총괄 개요 & 비전</button>
+        <button onclick="switchTab('changes')" id="tab-changes" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">🔄 2026 달라지는 점</button>
+        <button onclick="switchTab('priorities')" id="tab-priorities" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">🎯 4대 역점과제</button>
+        <button onclick="switchTab('models')" id="tab-models" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">💡 수업·평가 혁신모형</button>
+        <button onclick="switchTab('platforms')" id="tab-platforms" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">🚀 핵심 AI 플랫폼 (9대)</button>
+        <button onclick="switchTab('stats')" id="tab-stats" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">📈 2025 실적 지표</button>
+        <button onclick="switchTab('checklist')" id="tab-checklist" class="tab-btn px-3 py-1.5 rounded-md font-medium text-blue-200 hover:text-white hover:bg-white/10 transition shrink-0">📋 학교계획 필수지침</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 히어로 배너 -->
+  <section class="bg-gradient-to-b from-blue-900 via-slate-900 to-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+        <div class="space-y-4 max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-400/30">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            부산광역시교육청 역점과제 1순위 핵심 분석
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            "다함께 미래로 앞서가는 부산교육"<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-emerald-400">
+              AI시대를 선도하는 인간중심 미래교육
+            </span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            2026년 부산교육은 인공지능을 단순한 보조도구가 아닌 <strong>수업·평가 체계 대전환, 데이터 기반 개별화 학습, 행정 혁신(PenGPT), 책임 윤리</strong>를 관통하는 핵심 동력으로 추진합니다.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 text-xs text-slate-300">
+            <span class="bg-slate-800/80 px-2.5 py-1 rounded border border-slate-700">📄 출처: 2026년 주요업무계획(최종)</span>
+            <span class="bg-slate-800/80 px-2.5 py-1 rounded border border-slate-700">📅 시행: 2026. 1. 1.</span>
+            <span class="bg-slate-800/80 px-2.5 py-1 rounded border border-slate-700">🤖 핵심: BeAT · PenGPT · AI서논술형채점</span>
+          </div>
+        </div>
+
+        <!-- 인터랙티브 실시간 검색창 -->
+        <div id="search-section" class="w-full lg:w-96 bg-slate-800/90 p-5 rounded-2xl border border-slate-700/80 shadow-2xl backdrop-blur-md">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>키워드 실시간 스마트 검색</span>
+            <span id="search-count" class="text-blue-400">전체 표시 중</span>
+          </div>
+          <div class="relative">
+            <input type="text" id="global-search" oninput="handleGlobalSearch(this.value)" placeholder="예: BeAT, PenGPT, 채점, 윤리, 다문화..." 
+                   class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 text-white placeholder-slate-400 text-sm rounded-xl border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+            <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5 text-xs">
+            <button onclick="quickSearch('BeAT')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition">#BeAT</button>
+            <button onclick="quickSearch('PenGPT')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition">#PenGPT</button>
+            <button onclick="quickSearch('서·논술형')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition">#서논술형채점</button>
+            <button onclick="quickSearch('윤리')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition">#AI윤리</button>
+            <button onclick="quickSearch('진학 PEN')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition">#진학PEN</button>
+            <button onclick="quickSearch('')" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-slate-400 hover:text-white transition">초기화</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 메인 컨텐츠 영역 -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+
+    <!-- TAB 1: 총괄 개요 및 비전 4대 축 -->
+    <section id="view-overview" class="tab-view space-y-8">
+      
+      <!-- 핵심 통계 카운터 카드 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-semibold text-slate-500 mb-1">PenGPT 교직원 가입률</div>
+          <div class="text-3xl font-extrabold text-blue-600">74.9%</div>
+          <div class="text-xs text-slate-400 mt-1">23,792명 실가입 활용 중</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-semibold text-slate-500 mb-1">AI 맞춤 진학 상담</div>
+          <div class="text-3xl font-extrabold text-teal-600">55,100명</div>
+          <div class="text-xs text-slate-400 mt-1">진학 PEN AI 대입 시뮬레이터</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-semibold text-slate-500 mb-1">AI 융합 전공 교원</div>
+          <div class="text-3xl font-extrabold text-indigo-600">234명</div>
+          <div class="text-xs text-slate-400 mt-1">3개 대학원 석사과정 전액지원</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-semibold text-slate-500 mb-1">AI 정책 및 연구학교</div>
+          <div class="text-3xl font-extrabold text-emerald-600">49교+</div>
+          <div class="text-xs text-slate-400 mt-1">연구 8교 + 중점 36교 + 유치원 8원</div>
+        </div>
+      </div>
+
+      <!-- 부산 미래형 학교 모델 4대 핵심 축 인터랙티브 다이어그램 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Vision Architecture</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">부산 미래형 학교 모델 : 4대 추진 축</h3>
+            <p class="text-sm text-slate-500 mt-1">각 축을 클릭하여 2026년 세부 전략과 변화 방향을 살펴보세요.</p>
+          </div>
+          <div class="text-xs bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg border border-blue-200 font-medium">
+            💡 교사는 AI로 성장하고, 학생은 AI와 학습하며, 학교는 데이터로 혁신
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- 기둥 1: 학생 -->
+          <div onclick="showPillarDetail(1)" id="pillar-card-1" class="pillar-card cursor-pointer p-5 rounded-xl border-2 border-blue-500 bg-blue-50/50 hover:bg-blue-50 transition">
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">01</span>
+              <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">학생 (Student)</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 text-base">개별 맞춤형 성장</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">AI·데이터 기반 개별 학습 분석, 1:1 맞춤 피드백 및 자기조절 학습력 신장</p>
+            <div class="mt-3 text-xs text-blue-600 font-semibold flex items-center gap-1">상세 전략 보기 →</div>
+          </div>
+
+          <!-- 기둥 2: 교사 -->
+          <div onclick="showPillarDetail(2)" id="pillar-card-2" class="pillar-card cursor-pointer p-5 rounded-xl border-2 border-slate-200 bg-white hover:border-blue-400 transition">
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">02</span>
+              <span class="text-xs font-semibold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded">교사 (Teacher)</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 text-base">AI 학습디자이너 전환</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">학습데이터 분석가이자 학생 성장을 이끄는 AI 코칭 전문가로 역할 재정립</p>
+            <div class="mt-3 text-xs text-indigo-600 font-semibold flex items-center gap-1">상세 전략 보기 →</div>
+          </div>
+
+          <!-- 기둥 3: 교육과정 & 평가 -->
+          <div onclick="showPillarDetail(3)" id="pillar-card-3" class="pillar-card cursor-pointer p-5 rounded-xl border-2 border-slate-200 bg-white hover:border-blue-400 transition">
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">03</span>
+              <span class="text-xs font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">수업·평가 (Curriculum)</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 text-base">개념학습 & AI 채점</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">AI 질문 기반 개념-적용 수업 및 전국 최초 서·논술형 AI 자동 채점 시스템</p>
+            <div class="mt-3 text-xs text-emerald-600 font-semibold flex items-center gap-1">상세 전략 보기 →</div>
+          </div>
+
+          <!-- 기둥 4: 행정 & 학교경영 -->
+          <div onclick="showPillarDetail(4)" id="pillar-card-4" class="pillar-card cursor-pointer p-5 rounded-xl border-2 border-slate-200 bg-white hover:border-blue-400 transition">
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-sm">04</span>
+              <span class="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded">행정 (Administration)</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 text-base">PenGPT 기반 경감</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">공문서 초안, FAQ 챗봇, 나만의 비서 구축으로 교원이 교육에 몰입하는 환경</p>
+            <div class="mt-3 text-xs text-amber-600 font-semibold flex items-center gap-1">상세 전략 보기 →</div>
+          </div>
+        </div>
+
+        <!-- 기둥 상세 설명 패널 -->
+        <div id="pillar-detail-box" class="mt-6 p-5 rounded-xl bg-slate-900 text-white space-y-3 transition-all">
+          <div class="flex items-center justify-between">
+            <h4 id="pillar-detail-title" class="font-bold text-blue-300 text-base">01. 학생 (Student) : AI·데이터 기반 맞춤형 성장</h4>
+            <span class="text-xs text-slate-400">부산 미래형 학교 모델 4대 기둥 세부 분석</span>
+          </div>
+          <p id="pillar-detail-desc" class="text-sm text-slate-200 leading-relaxed">
+            학생들은 MS Azure OpenAI 기반의 '부산교육 AI 튜터 BeAT'와 똑똑! 수학탐험대, 펜터러시(영어 문해력)를 통해 실시간 질의응답과 자기주도적 보정학습을 받습니다. 데이터가 누적되어 학생 각자의 취약점을 보완하며, 고교생은 AI 면접 코칭과 진학 PEN AI로 진로를 설계합니다.
+          </p>
+          <div id="pillar-detail-tags" class="flex flex-wrap gap-2 pt-2 text-xs">
+            <span class="bg-blue-800 text-blue-200 px-2.5 py-1 rounded">BeAT 튜터</span>
+            <span class="bg-blue-800 text-blue-200 px-2.5 py-1 rounded">똑똑! 수학탐험대</span>
+            <span class="bg-blue-800 text-blue-200 px-2.5 py-1 rounded">책열매 어휘학습</span>
+            <span class="bg-blue-800 text-blue-200 px-2.5 py-1 rounded">진학 PEN AI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 2026 달라지는 부산교육 (AI 중심 주요 변화사항) -->
+    <section id="view-changes" class="tab-view hidden space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Before & After Changes</span>
+          <h3 class="text-2xl font-bold text-slate-900">2026년 달라지는 부산교육 : AI 핵심 변화</h3>
+          <p class="text-sm text-slate-500 mt-1">2026년 새롭게 도입되거나 전면 확대되는 6대 핵심 정책을 확인하세요.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="filterChanges('all')" class="change-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white">전체 보기</button>
+          <button onclick="filterChanges('학교/수업')" class="change-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">학교·수업</button>
+          <button onclick="filterChanges('행정/지원')" class="change-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">행정·교원</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="changes-grid">
+        <!-- 변화 1 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="학교/수업">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">미래형 학교</span>
+            <span class="text-xs font-bold text-emerald-600">신규·확대</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">디지털·AI 모델 연구학교</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            초·중·고 단계별 AI 교수학습 혁신 연구학교(초3, 중1, 고1), 생성형 AI 교수학습 연구학교(초2, 중1), 미래아이(AI)유치원 8개원을 본격 운영합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>지표:</strong> AI 중점학교 36교 + AI 융합 중심학교 5교 연계
+          </div>
+        </div>
+
+        <!-- 변화 2 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="학교/수업">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">수업·학습 지원</span>
+            <span class="text-xs font-bold text-blue-600">본격 보급</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">부산교육 AI 튜터 「BeAT」</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            MS Azure OpenAI 기반으로 교사에게는 교안 작성·RAG 수업자료 탑재 보조교사를, 학생에게는 질의응답 및 자소서·면접 코칭 튜터를 제공합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>대상:</strong> 교사 실습 연수 60교 + 학생 자기주도 60교
+          </div>
+        </div>
+
+        <!-- 변화 3 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="학교/수업">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">안전·규범</span>
+            <span class="text-xs font-bold text-rose-600">의무화</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">생성형 AI 윤리·가이드라인</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            단위학교 정보윤리 교육 중 AI 윤리교육(1차시 필수)을 의무화하고, 딥페이크 및 사이버도박 예방교육을 결합한 통합 가이드라인을 보급합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>규모:</strong> 유관기관 연계 찾아가는 윤리특강 2,000회
+          </div>
+        </div>
+
+        <!-- 변화 4 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="학교/수업">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-800">초등·돌봄</span>
+            <span class="text-xs font-bold text-emerald-600">전면 무상</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">AI 방과후·늘봄 통합플랫폼</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            빅데이터를 기반으로 학생 맞춤형 방과후 강좌를 AI가 자동 추천하며, 챗봇을 통한 실시간 민원 상담과 무상 SW·AI 프로그램을 전면 확대합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>확대:</strong> 늘봄 연계 전문기관 AI 체험교실 40교 지원
+          </div>
+        </div>
+
+        <!-- 변화 5 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="행정/지원">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-violet-100 text-violet-800">교직원 지원</span>
+            <span class="text-xs font-bold text-blue-600">고도화</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">AI 행정비서 「PenGPT」</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            공문서 기안 작성, 학교 지원 서비스(BSSS) 챗봇 도입, 교직원 개별 업무 맞춤형 '나만의 비서' 기능 생성으로 교원의 실질 업무를 대폭 경감합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>성과:</strong> '25년 가입률 74.9%(23,792명) 기반 심화
+          </div>
+        </div>
+
+        <!-- 변화 6 -->
+        <div class="change-card bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition" data-category="행정/지원">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">학부모·시민</span>
+            <span class="text-xs font-bold text-indigo-600">교육 격차해소</span>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">학부모 AI 아카데미 & 시민강좌</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            가정 내 디지털 격차를 해소하고 자녀의 책임 있는 AI 학습 지도를 돕기 위해 학부모 대상 생성형 AI 활용 아카데미 및 시민 공개강좌를 운영합니다.
+          </p>
+          <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+            📌 <strong>소통:</strong> 학부모원스톱지원센터 및 거점도서관 연계
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 4대 역점과제별 세부 AI 추진 계획 -->
+    <section id="view-priorities" class="tab-view hidden space-y-6">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Deep Dive Priorities</span>
+        <h3 class="text-2xl font-bold text-slate-900">2026 부산교육 4대 역점과제 속 AI 전략</h3>
+        <p class="text-sm text-slate-500 mt-1">역점과제별 카드를 클릭하여 세부 실천 과제 및 지원 체계를 확인하세요.</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- 역점 1 아코디언 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <button onclick="toggleAccordion('priority-1')" class="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">1</span>
+              <div>
+                <span class="text-xs font-semibold text-blue-600">[역점 1] 최우선 순위</span>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900">AI시대를 선도하는 인간중심 미래교육</h4>
+              </div>
+            </div>
+            <svg id="arrow-priority-1" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="content-priority-1" class="p-6 pt-0 border-t border-slate-100 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-blue-700 mb-2">① 미래형 연구·중점학교</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>AI·디지털 교육자료 연구학교 (초3, 중1, 고1)</li>
+                  <li>생성형 AI 모델 연구학교 (초2, 중1)</li>
+                  <li>미래아이(AI)유치원 8개원 운영</li>
+                  <li>AI 중점학교 36교, 융합중심학교 5교</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-indigo-700 mb-2">② AI 튜터 BeAT & 가이드라인</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>MS Azure OpenAI 기반 교육청 특화 구축</li>
+                  <li>교사용: 교안 작성, RAG 수업자료 탑재</li>
+                  <li>학생용: 1:1 맞춤 질의응답, 면접/자소서 코칭</li>
+                  <li>초·중 정보(실과) SW·AI 실습비 전액 지원</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-teal-700 mb-2">③ 역량 강화 & D.A.N.D.I</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>프롬프트 엔지니어링 교과팀 15팀, 경진대회(5월)</li>
+                  <li>A+++ 연수(150교), AI융합인력풀 현장지원(41교)</li>
+                  <li>디지털 지원 포털 'D.A.N.D.I' 고도화</li>
+                  <li>3개 대학원 석사과정 전액 지원</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 역점 2 아코디언 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <button onclick="toggleAccordion('priority-2')" class="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center font-bold text-sm">2</span>
+              <div>
+                <span class="text-xs font-semibold text-teal-600">[역점 2] 맞춤형 학력 & 늘봄</span>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900">학력과 마음을 함께 키우는 맞춤교육 속 AI</h4>
+              </div>
+            </div>
+            <svg id="arrow-priority-2" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="content-priority-2" class="p-6 pt-0 border-t border-slate-100 hidden space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-teal-700 mb-2">① 기초학력·수리·문해력</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>「똑똑! 수학탐험대」 전체 초등학교 운영</li>
+                  <li>부산수학문화관 맞춤형 AI 수학체험</li>
+                  <li>「책열매」 플랫폼 연계 어휘·독서 학습</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-teal-700 mb-2">② 늘봄 & 방과후 통합</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>AI 기반 학생 흥미 분석 맞춤 강좌 추천</li>
+                  <li>수강신청·출결 문의 실시간 AI 챗봇</li>
+                  <li>전문기관 연계 AI 체험 프로그램 40교 지원</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-teal-700 mb-2">③ 「진학 PEN AI」 고도화</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>생기부 기반 AI 모의면접 & 결과 리포트</li>
+                  <li>수시·정시 일람표 연동 합격 시뮬레이터</li>
+                  <li>부산진로진학지원센터 웹 연동 대시민 서비스</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 역점 3 아코디언 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <button onclick="toggleAccordion('priority-3')" class="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center font-bold text-sm">3</span>
+              <div>
+                <span class="text-xs font-semibold text-violet-600">[역점 3] 교원 안심 & 행정 혁신</span>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900">교원 안심·행정 혁신 속 AI 비서 (PenGPT)</h4>
+              </div>
+            </div>
+            <svg id="arrow-priority-3" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="content-priority-3" class="p-6 pt-0 border-t border-slate-100 hidden space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-violet-700 mb-2">① AI 비서 「PenGPT」 내실화</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>공문서 초안 작성, 회의록 요약, 데이터 통계 자동화</li>
+                  <li>교직원 개별 직무별 <strong>「나만의 비서」</strong> 커스텀 생성 기능</li>
+                  <li>부산교육 규정·지침·감사사례 사전 학습 모델</li>
+                  <li>AI 비서 활용 우수사례 공모전(4~5월) 개최</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-violet-700 mb-2">② 학교지원서비스(BSSS) AI 챗봇</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>자주 묻는 질문(FAQ) 및 업무도움자료 기반 지능형 응답 (하반기)</li>
+                  <li>교직원 업무자동화 프로그램 개발 대회 (5~10월, 우수작 6편 보급)</li>
+                  <li>반복 행정 제거로 수업 및 학생 지도 집중 환경 조성</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 역점 4 아코디언 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <button onclick="toggleAccordion('priority-4')" class="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">4</span>
+              <div>
+                <span class="text-xs font-semibold text-emerald-600">[역점 4] 시민교육 & 글로벌 역량</span>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900">시민교육 및 글로벌 영어 공교육 속 AI</h4>
+              </div>
+            </div>
+            <svg id="arrow-priority-4" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="content-priority-4" class="p-6 pt-0 border-t border-slate-100 hidden space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-emerald-700 mb-2">① 디지털 시민성 & AI 윤리 의무화</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>정보윤리 10시간 중 <strong>AI 윤리교육 1차시 필수</strong> 반영</li>
+                  <li>딥페이크 악용 범죄, 사이버 도박 및 과의존 선제적 예방</li>
+                  <li>찾아가는 AI 윤리교육 특강 2,000회 및 인공지능 윤리캠프(7월, 20팀)</li>
+                </ul>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <h5 class="font-bold text-emerald-700 mb-2">② 글로벌 AI 영어: 「펜터러시(Penteracy)」 (신규)</h5>
+                <ul class="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
+                  <li>학생 어휘 데이터 기반 AI 맞춤 학습경로 제시</li>
+                  <li>발음 정밀 분석 및 3단계(생소→혼돈→친숙) 교정 피드백</li>
+                  <li>BE-ChangeMaker 프레젠테이션 대회에 AI 발화 시스템 도입</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 수업·평가 혁신모형 (인터랙티브 스텝 뷰어) -->
+    <section id="view-models" class="tab-view hidden space-y-8">
+      <div>
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Instructional Innovation</span>
+        <h3 class="text-2xl font-bold text-slate-900">AI 활용 개념-적용학습 수업모형 & 서·논술형 AI 채점</h3>
+        <p class="text-sm text-slate-500 mt-1">질문에서 출발하여 협력 문제해결과 평가로 이어지는 부산형 미래 수업의 5단계를 확인해보세요.</p>
+      </div>
+
+      <!-- 5단계 수업모형 인터랙티브 위젯 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <h4 class="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+          <span>🚀 AI 활용 개념-적용학습 중등 표준 수업모형 (5-Step)</span>
+          <span class="text-xs bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full font-semibold">전체 중·고 실시</span>
+        </h4>
+
+        <!-- 스텝 네비게이션 버튼들 -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mb-6">
+          <button onclick="selectLessonStep(1)" id="step-btn-1" class="lesson-step-btn step-active p-3 rounded-xl border text-center transition">
+            <span class="text-xs font-bold block opacity-75">STEP 01</span>
+            <span class="text-sm font-bold">1. AI 질문하기</span>
+          </button>
+          <button onclick="selectLessonStep(2)" id="step-btn-2" class="lesson-step-btn p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition">
+            <span class="text-xs font-bold block opacity-75">STEP 02</span>
+            <span class="text-sm font-bold">2. 개념학습</span>
+          </button>
+          <button onclick="selectLessonStep(3)" id="step-btn-3" class="lesson-step-btn p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition">
+            <span class="text-xs font-bold block opacity-75">STEP 03</span>
+            <span class="text-sm font-bold">3. AI 표현하기</span>
+          </button>
+          <button onclick="selectLessonStep(4)" id="step-btn-4" class="lesson-step-btn p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition">
+            <span class="text-xs font-bold block opacity-75">STEP 04</span>
+            <span class="text-sm font-bold">4. 적용학습(협력)</span>
+          </button>
+          <button onclick="selectLessonStep(5)" id="step-btn-5" class="lesson-step-btn p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition col-span-2 sm:col-span-1">
+            <span class="text-xs font-bold block opacity-75">STEP 05</span>
+            <span class="text-sm font-bold">5. AI 표현·성찰</span>
+          </button>
+        </div>
+
+        <!-- 스텝 상세 내용 디스플레이 -->
+        <div id="step-content-box" class="bg-blue-50/60 border border-blue-200/80 rounded-2xl p-6 transition">
+          <div class="flex items-center justify-between mb-3">
+            <span id="step-badge" class="px-2.5 py-1 rounded bg-blue-600 text-white text-xs font-bold">STEP 01 : 발문 및 문제인식</span>
+            <span class="text-xs text-blue-700 font-semibold">교사-학생-AI 상호작용</span>
+          </div>
+          <h5 id="step-title" class="text-lg font-bold text-slate-900 mb-2">1단계: AI 질문하기 (질문 설계 및 호기심 유발)</h5>
+          <p id="step-desc" class="text-sm text-slate-700 leading-relaxed mb-4">
+            학생은 학습 주제에 대한 선행 지식과 궁금증을 AI에게 질문하고, AI의 다양한 답변과 반론을 통해 탐구 질문을 구체화합니다. 교사는 좋은 질문을 생성할 수 있도록 프롬프트 발문 가이드를 제시합니다.
+          </p>
+          <div class="bg-white p-3.5 rounded-xl border border-blue-100 text-xs text-slate-600 space-y-1">
+            <div>💡 <strong>교실 적용 팁:</strong> 단순 검색식 질문이 아닌 "조건을 부여한 다각도 발문" 훈련</div>
+            <div>🛠️ <strong>활용 도구:</strong> 부산교육 AI 튜터 BeAT, D.A.N.D.I 프롬프트 예시 라이브러리</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 서·논술형 평가 AI 채점 시스템 타임라인 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+          <div>
+            <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">New Initiative 2026</span>
+            <h4 class="text-xl font-bold text-slate-900">전국 최초 서·논술형 평가 AI 채점 시스템 로드맵</h4>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 self-start sm:self-auto">신규 공약 과제</span>
+        </div>
+
+        <div class="relative border-l-2 border-rose-200 ml-4 pl-6 space-y-6">
+          <div class="relative">
+            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-rose-500 ring-4 ring-rose-100"></span>
+            <span class="text-xs font-bold text-rose-600">Phase 1 : 2026 상반기</span>
+            <h5 class="font-bold text-slate-900 text-base">서·논술형 평가 AI 학습데이터 구축 협력학교 공모·선정</h5>
+            <p class="text-xs text-slate-600 mt-1">현장 교과 전문가팀을 구성하여 교과별 채점 기준 루브릭(Rubric) 수립 및 기초 학습데이터 세트 수집</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-100"></span>
+            <span class="text-xs font-bold text-blue-600">Phase 2 : 2026 하반기</span>
+            <h5 class="font-bold text-slate-900 text-base">과목별 표준문항 및 AI 채점 프로그램 예시문항 보급</h5>
+            <p class="text-xs text-slate-600 mt-1">주요 교과별 AI 자동채점 알고리즘 테스트 및 현장 모의 적용, 교사 피드백을 반영한 채점 오차율 최소화</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-100"></span>
+            <span class="text-xs font-bold text-emerald-600">Phase 3 : 2027 정착</span>
+            <h5 class="font-bold text-slate-900 text-base">누적 학습데이터 기반 학생 개별 맞춤 피드백 시스템 구축</h5>
+            <p class="text-xs text-slate-600 mt-1">단순 점수 산출을 넘어 학생의 사고 과정, 논리적 오류, 서술 약점을 정밀 분석하여 맞춤형 성장 피드백 리포트 자동 제공</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: 핵심 AI 플랫폼 (9대 플랫폼 인터랙티브 탐색기) -->
+    <section id="view-platforms" class="tab-view hidden space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">AI Platform Ecosystem</span>
+          <h3 class="text-2xl font-bold text-slate-900">부산교육 9대 핵심 AI 플랫폼 생태계</h3>
+          <p class="text-sm text-slate-500 mt-1">대상(교사, 학생, 교직원, 학부모)별 필터 또는 검색으로 플랫폼 기능을 조회하세요.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5" id="target-filters">
+          <button onclick="filterPlatform('all')" class="platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white">전체 (9)</button>
+          <button onclick="filterPlatform('교사')" class="platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">교사용</button>
+          <button onclick="filterPlatform('학생')" class="platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">학생용</button>
+          <button onclick="filterPlatform('교직원')" class="platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">교직원용</button>
+          <button onclick="filterPlatform('학부모')" class="platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">학부모용</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="platforms-grid">
+        <!-- 1. BeAT -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="교사 학생" data-name="beat 부산교육 ai 튜터">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">디지털미래교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">교사</span>
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">학생</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">BeAT <span class="text-xs font-normal text-slate-500">(Busan education AI Tutor)</span></h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            MS Azure OpenAI 기반. 교사용 수업설계/RAG 탑재로 맞춤형 보조교사 역할, 학생용 1:1 학습 튜터 및 자기소개서·면접 코칭 제공.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-blue-600 font-semibold">
+            핵심 기술: Azure OpenAI, RAG 지식검색, 실시간 튜터링
+          </div>
+        </div>
+
+        <!-- 2. PenGPT -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="교직원" data-name="pengpt 펜지피티 행정비서">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-violet-100 text-violet-800">노사행정정보과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">교직원</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">PenGPT <span class="text-xs font-normal text-slate-500">(교직원 전용 AI 행정비서)</span></h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            부산교육 지침 및 감사사례 사전 학습. 공문서 초안 작성, 회의록 정리, 통계 분석, 개인 맞춤형 '나만의 비서' 기능 제공.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-violet-600 font-semibold">
+            가입 현황: 교직원 74.9% (23,792명) 실사용 중
+          </div>
+        </div>
+
+        <!-- 3. 진학 PEN AI -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="학생 학부모" data-name="진학 pen ai 진로 대입">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">학력개발원</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">학생</span>
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">학부모</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">진학 PEN AI</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            생기부 및 제시문 분석 기반 AI 모의면접, 누적 대입 합격자 빅데이터 연동 진학 시뮬레이터, 맞춤형 1:1 대입 진학 상담.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-teal-600 font-semibold">
+            연간 실적: 맞춤형 진로·진학 상담 55,100명 지원
+          </div>
+        </div>
+
+        <!-- 4. D.A.N.D.I -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="교사 학생" data-name="dandi 단디 디지털미래교육지원">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">디지털미래교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">교사</span>
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">학생</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">D.A.N.D.I <span class="text-xs font-normal text-slate-500">(교육활동 지원 포털)</span></h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            디지털 기반 교수학습 활동을 총괄 지원하는 허브 포털. 교원 온라인 맞춤 연수 코스웨어, 원클릭 온라인 컨설팅, 교단지원자료실 운영.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-blue-600 font-semibold">
+            주요 기능: 맞춤형 직무연수, 원격 컨설팅 매칭, 수업도구함
+          </div>
+        </div>
+
+        <!-- 5. 똑똑! 수학탐험대 -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="학생" data-name="똑똑 수학탐험대 초등 수학">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">초등교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">초등생</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">똑똑! 수학탐험대</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            AI 기반 초등 수학 개념 및 맞춤 보정학습 지원 시스템. 게임형 탐험 콘텐츠와 연계하여 수학 기초학력 결손 선제적 예방.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-amber-600 font-semibold">
+            보급 범위: 부산 관내 전체 초등학교 전면 도입
+          </div>
+        </div>
+
+        <!-- 6. 펜터러시 (Penteracy) -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="학생" data-name="펜터러시 penteracy 영어 어휘">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">중등교육과 (신규)</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">초·중·고</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">펜터러시 <span class="text-xs font-normal text-slate-500">(Penteracy)</span></h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            2026 신규 도입. 학생 어휘 누적 빅데이터 분석, 음성 발음 분석 및 AI 피드백을 통해 3단계(생소→혼돈→친숙) 맞춤 경로 제시.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-emerald-600 font-semibold">
+            신규 특징: 실시간 음성인식 발음 교정 & 맞춤 어휘장
+          </div>
+        </div>
+
+        <!-- 7. 하이잡아도 -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="학생" data-name="하이잡아도 직업계고 취업">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">디지털미래교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">직업계고</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">하이잡아도</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            직업계고 학생을 위한 AI 기반 취업지원 플랫폼. 맞춤형 구인·구직 매칭 알고리즘, 이력서 자동 첨삭 및 실시간 모의면접 코칭.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-indigo-600 font-semibold">
+            연계 사업: 특성화고 AI 역량강화 & 데이터라벨러 양성
+          </div>
+        </div>
+
+        <!-- 8. 책열매 -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="학생" data-name="책열매 독서 어휘 초등">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">초등교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">초등생</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">책열매</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            AI 기반 독서 성향 진단 웹 플랫폼. 학생 수준별 맞춤 도서 추천 및 한 학기 한 권 읽기 연계 어휘 학습 지원.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-rose-600 font-semibold">
+            적용 과제: 초등 기초 문해력 신장 프로젝트 연계
+          </div>
+        </div>
+
+        <!-- 9. 부산에듀원 2.0 -->
+        <div class="platform-card bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition space-y-3" data-target="교사 학생" data-name="부산에듀원 에듀원 2.0 코딩">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-cyan-100 text-cyan-800">디지털미래교육과</span>
+            <div class="flex gap-1 text-xs">
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">교사</span>
+              <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">학생</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900">부산에듀원 2.0</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            알고리즘 및 블록·텍스트 코딩 실습 교수학습 지원 플랫폼. 학교 현장 SW·AI 코딩 실습 및 해커톤 대회 연계.
+          </p>
+          <div class="pt-2 border-t border-slate-100 text-xs text-cyan-600 font-semibold">
+            활용: SW·AI 거점센터 및 학생 코딩동아리 50팀 지원
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: 2025 전년도 주요 실적 및 통계 -->
+    <section id="view-stats" class="tab-view hidden space-y-6">
+      <div>
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Performance Metrics</span>
+        <h3 class="text-2xl font-bold text-slate-900">2025 AI 관련 주요 추진 성과 및 통계</h3>
+        <p class="text-sm text-slate-500 mt-1">2026 주요업무계획 부록에 명시된 공인 정량·정성 실적 데이터입니다.</p>
+      </div>
+
+      <!-- 실적 테이블 인터랙티브 -->
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs uppercase font-semibold">
+              <tr>
+                <th class="py-3.5 px-4 sm:px-6">사업 및 플랫폼명</th>
+                <th class="py-3.5 px-4 sm:px-6">2025년 주요 추진 실적</th>
+                <th class="py-3.5 px-4 sm:px-6">비고 및 성과 의미</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">행정 AI 비서 PenGPT</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-blue-600">교직원 23,792명 가입</span> (가입률 74.9%)</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">전산 행정업무 경감 및 업무 만족도 대폭 향상</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">부산교육 AI 튜터 BeAT</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-indigo-600">고등학교 27학급</span> 시범학급 운영</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">'26년 초·중·고 60교 이상 본격 보급 기반 마련</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">프롬프트 엔지니어링 연수</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-teal-600">교원 1,182명 이수</span>, 프로젝트팀 30팀</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">교원 수업 설계 프롬프트 활용 전문성 제고</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">AI 융합교육전문대학원</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-violet-600">석사과정 교원 234명</span> 지원</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">부산대·신라대·부산교대 협력 핵심인력풀 확보</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">SW·AI 교육거점센터</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-emerald-600">학생 체험 12,480명</span>, 심화동아리 430명</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">로보틱스·양자컴퓨터 특화 800학급 지원 체계</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">AI 초등 영어 펭톡</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-blue-600">초등학교 303교</span> 전면 운영</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">자기주도 영어 말하기 환경 조성</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">다문화 AI 한국어 학습</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-amber-600">281명 지원</span>, 동시통역 자막 13교</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">'24년 50명 → '25년 281명 (5.6배 급증)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-slate-900">진로·진학 AI 서비스</td>
+                <td class="py-3.5 px-4 sm:px-6"><span class="font-semibold text-rose-600">맞춤 진학 상담 55,100명</span> 지원</td>
+                <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-500">사교육비 경감 및 정보 격차 완화 기여</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: 단위학교 교육과정 필수 반영 가이드 (인터랙티브 체크리스트) -->
+    <section id="view-checklist" class="tab-view hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Unit School Checklist</span>
+          <h3 class="text-2xl font-bold text-slate-900">단위학교 학교교육계획 필수 반영 지침 체크리스트</h3>
+          <p class="text-sm text-slate-500 mt-1">2026 주요업무계획 부록에 의무화된 학교 필수 반영사항을 점검해보세요.</p>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg text-xs font-bold text-blue-800">
+          진행률: <span id="checklist-progress">0%</span> (0 / 4)
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-4 shadow-sm">
+        <!-- 체크 1 -->
+        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+          <input type="checkbox" onchange="updateChecklist()" class="checklist-item mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-900 text-sm">AI 윤리교육 편성 의무 (필수 1차시 이상)</span>
+              <span class="text-[10px] bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded">필수 의무</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">
+              단위학교 정보윤리교육(연간 10시간 이상) 내에 <strong>AI 윤리교육(1차시 이상)</strong> 및 딥페이크 악용 범죄 예방, 사이버도박 예방교육을 반드시 반영하여야 함.
+            </p>
+          </div>
+        </label>
+
+        <!-- 체크 2 -->
+        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+          <input type="checkbox" onchange="updateChecklist()" class="checklist-item mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-900 text-sm">초·중·고 SW·AI 교육 필수 시수 확보 및 실습비 연계</span>
+              <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">국정과제 99-1</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">
+              초등 실과 및 중등 정보교과 내 SW·AI 필수 기준 시수를 온전히 편성하고, 교육청에서 전액 지원하는 실습비를 교육과정과 연계하여 집행 계획 수립.
+            </p>
+          </div>
+        </label>
+
+        <!-- 체크 3 -->
+        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+          <input type="checkbox" onchange="updateChecklist()" class="checklist-item mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-900 text-sm">초등 AI 펭톡 활용 계획 수립</span>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">초등 권장</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">
+              초등학교 영어 정규수업 및 방과후 자기주도학습 과정에서 AI 영어말하기 시스템 'AI 펭톡'의 연간 활용 계획을 교육계획서에 반영 권장.
+            </p>
+          </div>
+        </label>
+
+        <!-- 체크 4 -->
+        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+          <input type="checkbox" onchange="updateChecklist()" class="checklist-item mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-900 text-sm">학교자율시간 인공지능 기반 특색 프로젝트 편성 권장</span>
+              <span class="text-[10px] bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded">자율 권장</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">
+              2022 개정 교육과정 도입에 따른 학교자율시간 및 창의적 체험활동에 'AI 기반 개념-적용 수업 프로젝트' 또는 'BE-AI 영어 융합 프로젝트' 반영 권장.
+            </p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="bg-slate-900 text-slate-400 py-8 text-xs border-t border-slate-800 mt-12 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-bold text-slate-200 text-sm">2026 부산광역시교육청 주요업무계획 AI 종합 인터랙티브 웹보고서</p>
+        <p class="mt-1">기준 문서: 0. 2026년 주요업무계획_최종(2025.12.31.).pdf · 작성일: 2026. 9. 30.</p>
+      </div>
+      <div class="text-slate-500 text-right">
+        <p>인간중심 미래교육 · 교수학습 대전환 · PenGPT</p>
+        <p>© Busan Metropolitan City Office of Education / Antigravity Agent</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 인터랙티브 스크립트 -->
+  <script>
+    // 탭 전환 로직
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+      const activeView = document.getElementById('view-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+
+      // 탭 버튼 스타일 업데이트
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('text-white', 'bg-white/15');
+        btn.classList.add('text-blue-200');
+      });
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-blue-200');
+        activeBtn.classList.add('text-white', 'bg-white/15');
+      }
+    }
+
+    // 4대 기둥 클릭 시 상세 정보 토글
+    const pillarData = {
+      1: {
+        title: "01. 학생 (Student) : AI·데이터 기반 맞춤형 성장",
+        desc: "학생들은 MS Azure OpenAI 기반의 '부산교육 AI 튜터 BeAT'와 똑똑! 수학탐험대, 펜터러시(영어 문해력)를 통해 실시간 질의응답과 자기주도적 보정학습을 받습니다. 데이터가 누적되어 학생 각자의 취약점을 보완하며, 고교생은 AI 면접 코칭과 진학 PEN AI로 진로를 설계합니다.",
+        tags: ["BeAT 튜터", "똑똑! 수학탐험대", "책열매 어휘학습", "진학 PEN AI"]
+      },
+      2: {
+        title: "02. 교사 (Teacher) : 학습데이터 분석 & AI 학습디자이너",
+        desc: "교사는 단순 지식 전달자에서 AI가 제공하는 학습 분석 데이터를 바탕으로 학생의 학습 결손을 진단하고 최적의 교육경로를 설계하는 '학습 디자이너'로 거듭납니다. D.A.N.D.I 포털과 프롬프트 엔지니어링 프로젝트팀(15팀), AI 융합 교육대학원(234명)을 통해 전문성을 고도화합니다.",
+        tags: ["프롬프트 엔지니어링", "D.A.N.D.I 포털", "AI 대학원 석사지원", "수업 컨설팅"]
+      },
+      3: {
+        title: "03. 수업·평가 (Curriculum) : 개념-적용 수업 & 서·논술형 AI 채점",
+        desc: "중등 전체에 'AI 활용 개념-적용학습 모형'을 전면 확산하여 단순 문제풀이를 지양하고 AI 질문을 통한 깊이 있는 탐구수업을 전개합니다. 또한 전국 최초로 '서·논술형 평가 AI 채점 시스템'을 도입하여 교사의 채점 부담을 경감하고 과정중심 평가의 실효성을 높입니다.",
+        tags: ["개념-적용 수업모형", "서·논술형 AI 채점", "과정중심 평가", "루브릭 데이터"]
+      },
+      4: {
+        title: "04. 학교·행정 (Administration) : PenGPT 기반 행정 경감",
+        desc: "공문서 초안 작성, 법령 질의, 회의록 정리를 전담하는 AI 행정비서 'PenGPT'를 전면 고도화합니다. 학교지원서비스(BSSS)에 AI 챗봇을 도입하고 교직원 개별 업무에 특화된 '나만의 비서'를 구축하여 교원이 수업과 생활지도에만 전념할 수 있도록 혁신합니다.",
+        tags: ["PenGPT 행정비서", "BSSS AI 챗봇", "나만의 비서", "업무자동화"]
+      }
+    };
+
+    function showPillarDetail(id) {
+      document.querySelectorAll('.pillar-card').forEach((card, idx) => {
+        if (idx + 1 === id) {
+          card.classList.remove('border-slate-200', 'bg-white');
+          card.classList.add('border-blue-500', 'bg-blue-50/50');
+        } else {
+          card.classList.remove('border-blue-500', 'bg-blue-50/50');
+          card.classList.add('border-slate-200', 'bg-white');
+        }
+      });
+
+      const data = pillarData[id];
+      document.getElementById('pillar-detail-title').innerText = data.title;
+      document.getElementById('pillar-detail-desc').innerText = data.desc;
+      
+      const tagsContainer = document.getElementById('pillar-detail-tags');
+      tagsContainer.innerHTML = '';
+      data.tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'bg-blue-800 text-blue-200 px-2.5 py-1 rounded';
+        span.innerText = t;
+        tagsContainer.appendChild(span);
+      });
+    }
+
+    // 아코디언 토글
+    function toggleAccordion(id) {
+      const content = document.getElementById('content-' + id);
+      const arrow = document.getElementById('arrow-' + id);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+
+    // 수업 5단계 모형 선택
+    const stepData = {
+      1: {
+        badge: "STEP 01 : 발문 및 문제인식",
+        title: "1단계: AI 질문하기 (질문 설계 및 호기심 유발)",
+        desc: "학생은 학습 주제에 대한 선행 지식과 궁금증을 AI에게 질문하고, AI의 다양한 답변과 반론을 통해 탐구 질문을 구체화합니다. 교사는 좋은 질문을 생성할 수 있도록 프롬프트 발문 가이드를 제시합니다.",
+        tip: "단순 검색식 질문이 아닌 '조건을 부여한 다각도 발문' 훈련",
+        tool: "부산교육 AI 튜터 BeAT, D.A.N.D.I 프롬프트 예시 라이브러리"
+      },
+      2: {
+        badge: "STEP 02 : 핵심 개념 구조화",
+        title: "2단계: 개념학습 (AI 피드백 기반 개념 정립)",
+        desc: "AI와의 질의응답을 통해 도출된 핵심 개념을 교과서 및 교사의 안내를 통해 체계화합니다. AI의 할루시네이션(오류)을 교차 검증하며 비판적 사고력을 함께 기릅니다.",
+        tip: "AI 답변 중 사실 관계 오류나 편향을 찾아내는 비판적 팩트체크 활동 병행",
+        tool: "교과서, 똑똑! 수학탐험대, 검증된 학술 데이터베이스"
+      },
+      3: {
+        badge: "STEP 03 : 개념 시각화 및 재구성",
+        title: "3단계: AI 표현하기 (생성형 AI 활용 결과물 초안 생성)",
+        desc: "이해한 개념을 글, 이미지, 마인드맵, 표 등 생성형 AI 도구를 활용하여 자신만의 방식으로 시각화하고 표현합니다.",
+        tip: "텍스트 생성 및 시각화 도구를 활용한 창의적 아이디어 시각화",
+        tool: "BeAT 프롬프트 도구, 생성형 멀티미디어 소프트웨어"
+      },
+      4: {
+        badge: "STEP 04 : 협력과 실생활 전이",
+        title: "4단계: 적용학습 (동료 협력 기반 실생활 문제해결)",
+        desc: "개별적으로 정립한 개념과 AI 표현물을 바탕으로 모둠원들과 토의·토론하며 지역사회 및 실생활의 복잡한 문제를 해결하는 프로젝트 과제를 수행합니다.",
+        tip: "AI를 단순한 대체자가 아닌 '협력 팀원'의 관점으로 토의에 참여",
+        tool: "학생 모둠 협업 보드, 부산에듀원 2.0 코딩 플랫폼"
+      },
+      5: {
+        badge: "STEP 05 : 메타인지 및 성찰",
+        title: "5단계: AI 표현·성찰 (최종 공유 및 메타인지 평가)",
+        desc: "완성된 산출물을 공유하고, AI 피드백 및 동료 피드백을 통해 학습 전반을 성찰합니다. 향후 서·논술형 AI 채점 시스템과 연계되어 정밀한 개인 맞춤 피드백을 받습니다.",
+        tip: "학습 일지 작성 시 AI가 던지는 역질문에 답하며 메타인지 역량 강화",
+        tool: "서·논술형 평가 AI 채점 시스템, 학생 맞춤 성장 리포트"
+      }
+    };
+
+    function selectLessonStep(stepNum) {
+      document.querySelectorAll('.lesson-step-btn').forEach((btn, idx) => {
+        if (idx + 1 === stepNum) {
+          btn.className = "lesson-step-btn step-active p-3 rounded-xl border text-center transition";
+        } else {
+          btn.className = "lesson-step-btn p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition";
+        }
+      });
+
+      const s = stepData[stepNum];
+      document.getElementById('step-badge').innerText = s.badge;
+      document.getElementById('step-title').innerText = s.title;
+      document.getElementById('step-desc').innerText = s.desc;
+      document.getElementById('step-content-box').querySelector('div.space-y-1').innerHTML = `
+        <div>💡 <strong>교실 적용 팁:</strong> ${s.tip}</div>
+        <div>🛠️ <strong>활용 도구:</strong> ${s.tool}</div>
+      `;
+    }
+
+    // 2026 달라지는 점 카테고리 필터
+    function filterChanges(category) {
+      const cards = document.querySelectorAll('.change-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.querySelectorAll('.change-filter-btn').forEach(btn => {
+        if (btn.innerText.includes(category === 'all' ? '전체' : category.split('/')[0])) {
+          btn.className = "change-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white";
+        } else {
+          btn.className = "change-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300";
+        }
+      });
+    }
+
+    // 플랫폼 대상별 필터
+    function filterPlatform(target) {
+      const cards = document.querySelectorAll('.platform-card');
+      cards.forEach(card => {
+        const targets = card.getAttribute('data-target') || '';
+        if (target === 'all' || targets.includes(target)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.querySelectorAll('.platform-filter-btn').forEach(btn => {
+        if (btn.innerText.includes(target === 'all' ? '전체' : target)) {
+          btn.className = "platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white";
+        } else {
+          btn.className = "platform-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300";
+        }
+      });
+    }
+
+    // 글로벌 실시간 검색
+    function handleGlobalSearch(query) {
+      const q = query.trim().toLowerCase();
+      const countEl = document.getElementById('search-count');
+
+      if (!q) {
+        countEl.innerText = "전체 표시 중";
+        document.querySelectorAll('.platform-card, .change-card').forEach(el => el.classList.remove('hidden'));
+        return;
+      }
+
+      // 플랫폼 및 변화 카드 검색
+      let matchCount = 0;
+      document.querySelectorAll('.platform-card').forEach(card => {
+        const text = (card.getAttribute('data-name') || '' + card.innerText).toLowerCase();
+        if (text.includes(q)) {
+          card.classList.remove('hidden');
+          matchCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.querySelectorAll('.change-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(q)) {
+          card.classList.remove('hidden');
+          matchCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      countEl.innerText = `${matchCount}건 발견`;
+
+      // 만약 플랫폼 탭이나 변화 탭에 매칭이 많으면 해당 탭으로 자동 유도도 가능
+    }
+
+    function quickSearch(tag) {
+      const input = document.getElementById('global-search');
+      input.value = tag;
+      handleGlobalSearch(tag);
+      if (tag) {
+        switchTab('platforms');
+      }
+    }
+
+    function focusSearch() {
+      const input = document.getElementById('global-search');
+      input.focus();
+    }
+
+    // 체크리스트 진행률 업데이트
+    function updateChecklist() {
+      const items = document.querySelectorAll('.checklist-item');
+      let checked = 0;
+      items.forEach(it => {
+        if (it.checked) checked++;
+      });
+      const pct = Math.round((checked / items.length) * 100);
+      document.getElementById('checklist-progress').innerText = `${pct}% (${checked} / ${items.length})`;
+    }
+  </script>
+</body>
+</html>
